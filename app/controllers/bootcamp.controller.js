@@ -1,13 +1,10 @@
-const {
-  users,
-  bootcamps
-} = require('../models')
+const { users, bootcamps} = require('../models')
 const db = require('../models')
 const Bootcamp = db.bootcamps
 const User = db.users
 
 // Crear y guardar un nuevo bootcamp
-exports.createBootcamp = (bootcamp) => {
+const createBootcamp = (bootcamp) => {
   return Bootcamp.create({
     title: bootcamp.title,
     cue: bootcamp.cue,
@@ -23,7 +20,7 @@ exports.createBootcamp = (bootcamp) => {
 }
 
 // Agregar un Usuario al Bootcamp
-exports.addUser = (bootcampId, userId) => {
+const addUser = (bootcampId, userId) => {
   return Bootcamp.findByPk(bootcampId)
     .then((bootcamp) => {
       if (!bootcamp) {
@@ -49,7 +46,7 @@ exports.addUser = (bootcampId, userId) => {
 
 
 // obtener los bootcamp por id 
-exports.findById = (Id) => {
+const findById = (Id) => {
   return Bootcamp.findByPk(Id, {
       include: [{
         model: User,
@@ -70,7 +67,7 @@ exports.findById = (Id) => {
 
 
 // obtener todos los Usuarios incluyendo los Bootcamp
-exports.findAll = () => {
+const findAll = () => {
   return Bootcamp.findAll({
     attributes: ['id', 'title', 'cue', 'description'],
     include: [{
@@ -88,3 +85,4 @@ exports.findAll = () => {
   });
 }
 
+module.exports = { createBootcamp, addUser, findById, findAll }

@@ -1,4 +1,4 @@
-import sequelize from '../config/db.config.js';
+const sequelize = require ('../config/db.config.js');
 const BootcampModel = require('./app/models/bootcamp.model');
 const UserModel = require('./app/models/user.model');
 
@@ -11,8 +11,4 @@ sequelize.sync().then(() => {
     console.error('Error syncing models:', error);
 });
 
-module.exports = {
-    sequelize,
-    Bootcamp,
-    User
-};
+module.exports = { sequelize, Bootcamp, User };

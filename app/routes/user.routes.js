@@ -1,12 +1,5 @@
-import express from "express";
-import {
-    createUser,
-    findUserById,
-    findAll,
-    updateUserById,
-    deleteUserById,
-    login
-} from "../controllers/user.controller.js";
+const express = require ("express");
+const { createUser, findUserById, findAll, updateUserById, deleteUserById} = require ("../controllers/user.controller.js");
 const { login, verifyToken } = require ("../middleware/auth.js");
 const { validarEmail } = require ("../middleware/verifySingUp.js");
 
@@ -20,6 +13,8 @@ rutas.get("/api/bootcamp/users/user:id", findUserById);
 rutas.get("/api/bootcamp/users/", findAll);
 rutas.put("/api/bootcamp/users/user:id", verifyToken, updateUserById);
 rutas.delete("/api/bootcamp/users/user:id", verifyToken, deleteUserById);
+
+module.exports = { rutas }
 
 
 

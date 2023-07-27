@@ -1,10 +1,10 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const User = require('../models/user.model.js');
-import secret_key from '../config/auth.config.js';
+const secret_key = require ('../config/auth.config.js');
 
 
-export const login = async (req, res) => {
+const login = async (req, res) => {
     const { email, password } = req.body;
     try {
         const usuario = await User.findOne({
@@ -26,7 +26,7 @@ export const login = async (req, res) => {
     }
 };
 
-export const verifyToken = (req, res, next) => {
+const verifyToken = (req, res, next) => {
     const token = req.header('Authorization');
     if (!token) {
         return res.status(401).json({ code: 401, message: 'No autorizado: no possee token proporcionado' });
@@ -40,3 +40,6 @@ export const verifyToken = (req, res, next) => {
         next(); 
     });
 };
+
+
+module.exports = { login, verifyToken }

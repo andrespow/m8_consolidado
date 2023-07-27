@@ -1,11 +1,6 @@
-import express from "express";
-import {
-    createBootcamp,
-    findAll,
-    addUser,
-    findById
-} from "../controllers/bootcamp.controller.js";
-import { verifyToken } from '../middleware/auth.js';
+const express = require ("express");
+const { createBootcamp, findAll, addUser, findById} = require ("../controllers/bootcamp.controller.js");
+const { verifyToken } = require ('../middleware/auth.js');
 
 const rutas = express.Router();
 
@@ -17,5 +12,4 @@ rutas.get("/api/bootcamp/user:id", findById);
 rutas.get("/api/bootcamp/alluser", findAll);
 
 
-
-export default router;
+module.exports = { rutas }

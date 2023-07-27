@@ -1,6 +1,6 @@
-import User from '../models/user.model.js';
+const User = require ('../models/user.model.js');
 
-export const validarEmail = async (req, res, next) => {
+const validarEmail = async (req, res, next) => {
     let { email, password } = req.body;
     try {
         let usuario = await User.findOne({
@@ -16,3 +16,5 @@ export const validarEmail = async (req, res, next) => {
         return res
     }
 };
+
+module.exports = { validarEmail }

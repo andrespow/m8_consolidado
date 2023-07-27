@@ -1,3 +1,3 @@
 const password = 'secret_key';
 
-export default password
+module.exports = { password }

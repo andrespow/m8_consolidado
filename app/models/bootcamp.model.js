@@ -1,5 +1,5 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../config/db.config.js";
+const { DataTypes } = require ("sequelize");
+const sequelize = require ("../config/db.config.js");
 
 const Bootcamp = sequelize.define('bootcamp', {
   title: {
@@ -38,4 +38,4 @@ const Bootcamp = sequelize.define('bootcamp', {
 
 })
 
-export default Bootcamp;
+module.exports = { Bootcamp }

@@ -1,4 +1,4 @@
-import Sequelize from 'sequelize';
+const Sequelize = require ('sequelize');
 
 const sequelize = new Sequelize('db_jwtbootcamp','postgres','rosa1009',{
     host: "localhost",
@@ -11,5 +11,4 @@ const sequelize = new Sequelize('db_jwtbootcamp','postgres','rosa1009',{
     }}
 );
 
-
-export default sequelize;
+module.exports = { sequelize }

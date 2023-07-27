@@ -1,12 +1,10 @@
-const {
-  users
-} = require('../middleware')
+const { users } = require('../middleware')
 const db = require('../middleware')
 const User = db.users
 const Bootcamp = db.bootcamps
 
 // Crear y Guardar Usuarios
-exports.createUser = (user) => {
+const createUser = (user) => {
   return User.create({
       firstName: user.firstName,
       lastName: user.lastName,
@@ -22,7 +20,7 @@ exports.createUser = (user) => {
 }
 
 // obtener los bootcamp de un usuario
-exports.findUserById = (userId) => {
+const findUserById = (userId) => {
   return User.findByPk(userId, {
       include: [{
         model: Bootcamp,
@@ -42,7 +40,7 @@ exports.findUserById = (userId) => {
 }
 
 // obtener todos los Usuarios incluyendo los bootcamp
-exports.findAll = () => {
+const findAll = () => {
   return User.findAll({
     include: [{
       model: Bootcamp,
@@ -58,7 +56,7 @@ exports.findAll = () => {
 }
 
 // Actualizar usuarios
-exports.updateUserById = (userId, fName, lName) => {
+const updateUserById = (userId, fName, lName) => {
   return User.update({
       firstName: fName,
       lastName: lName
@@ -77,7 +75,7 @@ exports.updateUserById = (userId, fName, lName) => {
 }
 
 // Actualizar usuarios
-exports.deleteUserById = (userId) => {
+const deleteUserById = (userId) => {
   return User.destroy({
       where: {
         id: userId
@@ -91,3 +89,5 @@ exports.deleteUserById = (userId) => {
       console.log(`>> Error mientras se eliminaba el usuario: ${err}`)
     })
 }
+
+module.exports = { createUser, findUserById, findAll, updateUserById, deleteUserById }
